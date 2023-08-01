@@ -1,38 +1,47 @@
-import java.util.ArrayList;
-import java.util.List;
-
-class P42480 {
-    public int[] solution(int[] answers) {
-        int[] num1 = {1,2,3,4,5};
-        int[] num2 = {2,1,2,3,2,4,2,5};
-        int[] num3 = {3,3,1,1,2,2,4,4,5,5};
-
-        int[] cnt = new int[3];
+public class P42840 {
+    public int[] solution(int[] answers){
+        int[] answer;
+        int[] ans1={1,2,3,4,5};
+        int[] ans2={2,1,2,3,2,4,2,5};
+        int[] ans3={3,3,1,1,2,2,4,4,5,5};
+        int a=0,b=0,c=0;
 
         for(int i=0;i<answers.length;i++){
-            if(answers[i] == num1[i%5]) cnt[0]++;
-            if(answers[i] == num2[i%8]) cnt[1]++;
-            if(answers[i] == num3[i%10]) cnt[2]++;
+            if(answers[i]==ans1[i%5]) a++;
+            if(answers[i]==ans2[i%8]) b++;
+            if(answers[i]==ans3[i%10]) c++;
         }
 
-        int max = Math.max(cnt[0],Math.max(cnt[1],cnt[2]));
-        List<Integer> list = new ArrayList<>(cnt.length);
-        for(int i=0;i<cnt.length;i++){
-            if(max == cnt[i]) list.add(i+1);
-        }
+        if(a>b && a>c){
+            answer=new int[1];
+            answer[0]=1;
+        }else if(b>a && b>c){
+            answer=new int[1];
+            answer[0]=2;
+        }else if(c>a && c>b){
+            answer=new int[1];
+            answer[0]=3;
+        }else if(a==b && b>c){
+            answer=new int[2];
+            answer[0]=1;
+            answer[1]=2;
 
-        int[] answer = new int[list.size()];
-        for(int i=0;i<answer.length;i++){
-            answer[i] = list.get(i);
+        }else if(a==c && c>b){
+            answer=new int[2];
+            answer[0]=1;
+            answer[1]=3;
+        }else if(b==c && b>a){
+            answer=new int[2];
+            answer[0]=2;
+            answer[1]=3;
+        }else{
+            answer=new int[3];
+            answer[0]=1;answer[1]=2;answer[2]=3;
         }
         return answer;
     }
-
     public static void main(String[] args) {
-        int[] answers = {1,3,2,4,2};
-        int[] answer = new P42480().solution(answers);
-        for(int a : answer){
-            System.out.print(a+" ");
-        }
+        int[] answer = new int[]{1,2,3,4,5};
+        System.out.println(new P42840().solution(answer));
     }
 }

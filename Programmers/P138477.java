@@ -21,7 +21,10 @@ public class P138477 {
     }
 
     public static void main(String[] args) {
-        int[] arr = {0, 300, 40, 300, 20, 70, 150, 50, 500, 1000};
-        new P138477().solution(4, arr);
+        int[] arr = {10,100,20,150,1,100,200};
+        int[] result = new P138477().solution(3, arr);
+        for(int a:result){
+            System.out.print(a+" ");
+        }
     }
 }
